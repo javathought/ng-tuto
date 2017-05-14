@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
@@ -9,6 +10,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import { HeroSearchService } from '../services/hero-search.service';
+import { HeroService } from '../services/hero.service';
 import { Hero } from '../hero';
 @Component({
   selector: 'app-hero-search',
@@ -17,15 +19,34 @@ import { Hero } from '../hero';
   providers: [HeroSearchService]
 })
 export class HeroSearchComponent implements OnInit {
+  heroCtrl: FormControl;
   heroes: Observable<Hero[]>;
   private searchTerms = new Subject<string>();
+
+  stateCtrl: FormControl;
+  filteredStates: any;
+
   constructor(
     private heroSearchService: HeroSearchService,
-    private router: Router) {}
+    private heroService: HeroService,
+    private router: Router) {
+      this.heroCtrl = new FormControl();
+      // this.heroes = this.heroCtrl.valueChanges
+      //  .startWith(null)
+      //  .map(name => this.searchT(name)).subscribe(x => this.heroes = x);
+  }
+
   // Push a search term into the observable stream.
   search(term: string): void {
     this.searchTerms.next(term);
   }
+
+
+  searchT(val: string) {
+    return val ? this.heroSearchService.search(val)
+               : this.heroService.getHeroes;
+  }
+
   ngOnInit(): void {
     this.heroes = this.searchTerms
       .debounceTime(300)        // wait 300ms after each keystroke before considering the term

@@ -1,6 +1,37 @@
-<h1>{{title}}</h1>
-<nav>
-  <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
-  <a routerLink="/heroes" routerLinkActive="active">Heroes</a>
-</nav>
-   <router-outlet></router-outlet>
+
+
+
+  <md-toolbar color="primary">
+    <!-- <button md-mini-fab class="example-fab" (click)="sidenav.toggle()">
+      <md-icon>add</md-icon>
+    </button> -->
+    <button md-button (click)="sidenav.toggle()">
+        <i class="material-icons app-toolbar-menu">menu</i>
+     </button>
+    <span>{{title}}</span>
+    <span class="spacer"></span>
+    <button md-button routerLink="/dashboard" routerLinkActive="active"> Dashboard </button>
+    <button md-button routerLink="/heroes" routerLinkActive="active"> Heroes </button>
+</md-toolbar>
+<md-sidenav-container >
+
+  <md-sidenav #sidenav mode="side" class="app-sidenav">
+    <md-toolbar>
+
+
+
+      <span><button md-button routerLink="/dashboard" routerLinkActive="active"> Dashboard </button></span>
+
+      <md-toolbar-row>
+        <span><button md-button routerLink="/heroes" routerLinkActive="active"> Heroes </button></span>
+      </md-toolbar-row>
+
+    </md-toolbar>
+  </md-sidenav>
+  
+<div class="app-content">
+ <router-outlet></router-outlet>
+ <!-- Your content goes here -->
+</div>
+
+</md-sidenav-container>

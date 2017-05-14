@@ -2,6 +2,7 @@ import { Component, OnInit  } from '@angular/core';
 import { Hero } from './hero';
 import { HeroService } from './services/hero.service';
 import { Router } from '@angular/router';
+import {MdMenuModule} from '@angular/material';
 
 
 @Component({

@@ -1,10 +1,10 @@
-<div id="search-component">
-  <h4>Hero Search</h4>
-  <input #searchBox id="search-box" (keyup)="search(searchBox.value)" />
-  <div>
-    <div *ngFor="let hero of heroes | async"
-         (click)="gotoDetail(hero)" class="search-result" >
-      {{hero.name}}
-    </div>
-  </div>
-</div>
+
+<md-input-container>
+  <input mdInput placeholder="Hero" [mdAutocomplete]="auto" id="search-box" (keyup)="search(heroCtrl.value)"  [formControl]="heroCtrl" >
+</md-input-container>
+
+<md-autocomplete #auto="mdAutocomplete">
+  <md-option *ngFor="let hero of heroes | async" (click)="gotoDetail(hero)" >
+    {{ hero.name }}
+  </md-option>
+</md-autocomplete>

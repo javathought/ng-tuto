@@ -1,27 +1,50 @@
-<h2>My Heroes</h2>
+<md-card>
+  <h2>My Heroes</h2>
 
-<ul class="heroes">
+  <ul class="heroes">
 
-  <div>
-    <label>Hero name:</label> <input #heroName />
-    <button (click)="add(heroName.value); heroName.value=''">
-      Add
-    </button>
+    <div>
+      <md-input-container>
+        <input mdInput placeholder="Hero name" #heroName >
+      </md-input-container>
+
+      <button md-raised-button color="accent" (click)="add(heroName.value); heroName.value=''" >
+        Add
+      </button>
+    </div>
+
+    md-chip-remove
+
+    <!-- <md-chip-list>
+      <md-chip [selectable]="selectable"  *ngFor="let hero of heroes" (click)="onSelect(hero)"
+      [class.selected]="hero === selectedHero">My Chip</md-chip>
+    </md-chip-list> -->
+
+    <md-list class="mat-chip-list-stacked">
+      <md-list-item *ngFor="let hero of heroes" (click)="onSelect(hero)"
+      [class.selected]="hero === selectedHero">
+        {{hero.name}} <md-icon md-list-icon>folder</md-icon>
+        <a (click)="delete(hero); $event.stopPropagation()" class="mdl-chip__action"><i class="material-icons">cancel</i></a>
+      </md-list-item>
+    </md-list>
+
+    <div *ngFor="let hero of heroes" (click)="onSelect(hero)"
+    [class.selected]="hero === selectedHero">
+      <!-- each hero goes here -->
+    <span class="mdl-chip mdl-chip--contact mdl-chip--deletable">
+      <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white">{{hero.id}}</span>
+      <span class="mdl-chip__text">{{hero.name}}</span>
+      <a (click)="delete(hero); $event.stopPropagation()" class="mdl-chip__action"><i class="material-icons">cancel</i>
+      </a>
+    </span>
+
+    </div>
+    <div *ngIf="selectedHero">
+    <h2>
+      {{selectedHero.name | uppercase}} is my hero
+    </h2>
+    <button (click)="gotoDetail()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">View Details</button>
   </div>
 
-  <li *ngFor="let hero of heroes" (click)="onSelect(hero)"
-  [class.selected]="hero === selectedHero">
-    <!-- each hero goes here -->
-    <span class="badge">{{hero.id}}</span> {{hero.name}}
-    <button class="delete"
-  (click)="delete(hero); $event.stopPropagation()">x</button>
-
-  </li>
-  <div *ngIf="selectedHero">
-  <h2>
-    {{selectedHero.name | uppercase}} is my hero
-  </h2>
-  <button (click)="gotoDetail()">View Details</button>
-</div>
-
-</ul>
+  </ul>
+</md-card>
