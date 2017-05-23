@@ -13,32 +13,25 @@
       </button>
     </div>
 
-    md-chip-remove
 
-    <!-- <md-chip-list>
-      <md-chip [selectable]="selectable"  *ngFor="let hero of heroes" (click)="onSelect(hero)"
-      [class.selected]="hero === selectedHero">My Chip</md-chip>
-    </md-chip-list> -->
+    <table class="mdl-data-table">
+      <thead>
+        <tr>
+          <th><md-checkbox  ></md-checkbox></th>
+          <th class="non-numeric">Hero name</th><th>Action</th></tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let hero of heroes">
+          <td><md-checkbox  ></md-checkbox></td>
+          <td class="non-numeric">{{hero.name}}</td>
+          <td class="icon center">
+            <a (click)="delete(hero); $event.stopPropagation()">
+            <md-icon class="md-18" color="warn" >delete</md-icon> </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
-    <md-list class="mat-chip-list-stacked">
-      <md-list-item *ngFor="let hero of heroes" (click)="onSelect(hero)"
-      [class.selected]="hero === selectedHero">
-        {{hero.name}} <md-icon md-list-icon>folder</md-icon>
-        <a (click)="delete(hero); $event.stopPropagation()" class="mdl-chip__action"><i class="material-icons">cancel</i></a>
-      </md-list-item>
-    </md-list>
-
-    <div *ngFor="let hero of heroes" (click)="onSelect(hero)"
-    [class.selected]="hero === selectedHero">
-      <!-- each hero goes here -->
-    <span class="mdl-chip mdl-chip--contact mdl-chip--deletable">
-      <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white">{{hero.id}}</span>
-      <span class="mdl-chip__text">{{hero.name}}</span>
-      <a (click)="delete(hero); $event.stopPropagation()" class="mdl-chip__action"><i class="material-icons">cancel</i>
-      </a>
-    </span>
-
-    </div>
     <div *ngIf="selectedHero">
     <h2>
       {{selectedHero.name | uppercase}} is my hero

@@ -1,13 +1,19 @@
-.app-content {
-  padding: 20px;
+
+.mat-list, .mat-nav-list {
+  // border: 1px solid rgba(0, 0, 0, 0.12);
+  width: 200px;
+  margin: 20px 0 0 0;
+
+}
+h2 {
+  margin-top: 20px;
 }
 
-
-.app-sidenav {
-  padding: 10px;
-  min-width: 100px;
+.mat-icon {
+  color: rgba(0, 0, 0, 0.12);
 }
 
-md-sidebar, md-toolbar {
-  background: transparent;
+.mat-list-icon {
+  color: white;
+  background: rgba(0, 0, 0, 0.3);
 }
